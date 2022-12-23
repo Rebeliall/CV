@@ -1,0 +1,62 @@
+ret = False
+password = None
+login = None
+
+print("Программа \"FreeMoney: Раздача больших денег\".\nОкно авторизации.")
+
+while ret == False:
+    q0 = int(input("\n\nСоздать/Изменить пароль(1)\nСоздать/Изменить логин(2)\nВойти в систему(3)\n"))
+    if q0 == 1:
+        if password != None:
+            passcheck = input("\nВы действительно хотите сменить пароль?\nВведите \"Да\" или \"Нет\".\n")
+            if passcheck == "Да" or passcheck == "да":
+                passtime = input("\nВведите новый пароль длиной от 3 до 10 любых символов.\n")
+                if len(passtime) < 3 or len(passtime) > 10:
+                    print("\nНекорректная длина пароля. Возвращаемся в предыдущее окно.")
+                elif len(passtime) >= 3 or len(passtime) <= 10:
+                    password = passtime
+                    print("\nВы успешно изменили пароль.")
+            elif passcheck == "Нет" or passcheck == "нет":
+                print("\nВозвращаемся в предыдущее окно.")
+            else:
+                print("\nНекорректный ответ. Возвращаемся в предыдущее окно.")
+        else:
+            passtime = input("\nВведите пароль длиной от 3 до 10 любых символов.\n")
+            if len(passtime) < 3 or len(passtime) > 10:
+                print("\nНекорректная длина пароля. Возвращаемся в предыдущее окно.")
+            elif len(passtime) >= 3 or len(passtime) <= 10:
+                password = passtime
+                print("\nВы успешно создали пароль.")
+    elif q0 == 2:
+        if login != None:
+            logcheck = input("\nВы действительно хотите сменить логин?\nВведите \"Да\" или \"Нет\".\n")
+            if logcheck == "Да" or logcheck == "да":
+                logtime = input("\nВведите новый логин длиной от 3 до 10 любых символов.\n")
+                if len(logtime) < 3 or len(logtime) > 10:
+                    print("\nНекорректная длина логина. Возвращаемся в предыдущее окно.")
+                elif len(logtime) >= 3 or len(logtime) >= 10:
+                    login = logtime
+                    print("\nВы успешно изменили логин.")
+            elif logcheck == "Нет" or logcheck == "нет":
+                print("")
+            else:
+                print("\nНекорректный ответ. Возвращаемся в предыдущее окно.")
+        else:
+            logtime = input("\nВведите логин длиной от 3 до 10 любых символов.\n")
+            if len(logtime) < 3 or len(logtime) > 10:
+                print("\nНекорректная длина пароля. Возвращаемся в предыдущее окно.")
+            elif len(logtime) >= 3 or len(logtime) <= 10:
+                login = logtime
+                print("\nВы успешно создали логин.")
+    elif q0 == 3:
+        passenter = input("\nВведите пароль.\n")
+        logenter = input("\nВведите логин.\n")
+        if password == None or login == None:
+            print("\nНесуществующий логин или пароль.\nСоздайте логин и/или пароль для входа в программу.")
+        elif password == passenter and login == logenter:
+            print("\nВы успешно вошли в программу.\n...\n...\n...\nThe programm doesn't exist. 404 error.")
+            ret = True
+        elif (password and login != None) and (password != passenter or login != logenter):
+            print("\nНеверный логин или пароль. Повторите попытку.")
+    else:
+        print("\nНекорректный ответ. Введите снова.")

@@ -1,0 +1,17 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+
+chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
+chrome_options.headless = True
+
+browser = webdriver.Chrome(options=chrome_options)
+
+browser.get('https://mynickname.com/generate')
+while True:
+    browser.find_element("xpath", "/html/body/div[1]/div[1]/div[1]/div[2]/form/table/tbody/tr[5]/td[2]/input").click()
+    link = browser.find_element("id", "register").get_attribute("href")[37:]
+    print("Nickname - ", link)
